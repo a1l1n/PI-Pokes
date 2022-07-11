@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { Type } = require('../db');
+const { Type } = require('../../db');
 
 async function getTypes(req, res){
   try {

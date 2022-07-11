@@ -18,7 +18,7 @@
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
-const { getTypes } = require('./src/Controllers/TypeControllers.js');
+const { getTypes } = require('../api/src/routes/Controllers/TypeControllers');
 const { conn } = require('./src/db.js');
 
 // Syncing all the models at once.

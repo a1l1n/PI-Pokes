@@ -1,34 +1,41 @@
 const axios = require('axios');
-const { Pokemon, Type } = require('../db');
-const getAllPokes = require('./pokeFunctions');
+const { Pokemon, Type } = require('../../db');
+const { getAllPokemons } = require('./Functions/getAllPokemons');
 
 async function getPokes(req, res){
-    const { pokeName } = req.query;
+    const { name } = req.query;
+    const totalPokemons = await getAllPokemons();
     try {
-    
-    } catch (error) {
-        console.log('Todo falló');
-        res.send(error);
+        if (name) {
+            const pokemonName = totalPokemons.filter(el => el.name.toLowerCase() === name.toLowerCase());
+            res.status(200).send(pokemonName);
+        } else { 
+            res.status(200).send(totalPokemons);
+        }
+    } catch(error) { 
+        console.log(error)
     }
-};
+}
 
 // ID --------------------------------------------------------------------------
 
 async function getPokeId(req, res){
-    const { id } = req.params;
+    const { idPoke } = req.params;
     try {
-        const poke = await Pokemon.findOne({
-            where: { id: id },
-            include: Type
-        });
-    if (poke) return res.status(200).json(poke);
-    return res.status(404).send('Pokemon not found, please try again');
+        let allPokemons = await getAllPokemons();
+        console.log("ID ingresada por params: ", idPoke);
+    if(idPoke){
+        const findingPoke = await allPokemons.filter(pkId => pkId.id === idPoke);
+        console.log("Poke by ID: ", findingPoke)
+        if(findingPoke) res.status(200).send(findingPoke);
+        res.status(400).send("Pokemon not found, please try again") 
+    } 
     } catch (error) {
         console.log(error);
         res.status(400).json("Ups, something went wrong...")
         
         // Averiguar cuándo conviene o si siempre es necesario utilizar esta sintaxis, si siempre es necesario el .json o no y si hace la diferencia el uso del 400 y 404
-    }
+    } 
 };
 
 // POST -------------------------------------------------------------------------
@@ -66,8 +73,7 @@ async function postPoke(req, res){
 };
 
 module.exports = {
-    getPokes,
+    getPokes, 
     getPokeId,
     postPoke    
 };
-
