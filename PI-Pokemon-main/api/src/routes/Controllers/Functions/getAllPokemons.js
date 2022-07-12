@@ -7,4 +7,6 @@ async function getAllPokemons() {
     return allPokemonsInfo;
 }
 
-module.exports = {getAllPokemons};
+module.exports = {
+    getAllPokemons
+};
