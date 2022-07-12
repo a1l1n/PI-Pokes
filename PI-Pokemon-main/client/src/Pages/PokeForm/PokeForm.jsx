@@ -1,3 +1,11 @@
+import React from 'react'
+
+export default function PokeForm(){
+  return (
+    <div>PokeForm</div>
+  )
+}
+
 /* 
 Ruta de creación: debe contener
 

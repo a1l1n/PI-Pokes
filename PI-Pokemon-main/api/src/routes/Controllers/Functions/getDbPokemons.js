@@ -1,6 +1,6 @@
 const { Pokemon, Type } = require('../../../db');
 
-async function getDbInfo() {
+async function getDbPokes() {
     try {
         const dbPokemons = await Pokemon.findAll({
             include: { 
@@ -20,4 +20,6 @@ async function getDbInfo() {
     }
 }
 
-module.exports = getDbInfo;
+module.exports = {
+    getDbPokes
+}

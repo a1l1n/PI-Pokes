@@ -21,9 +21,9 @@ async function getPokes(req, res){
 
 async function getPokeId(req, res){
     const { idPoke } = req.params;
+    console.log("ID ingresada por params: ", idPoke);
     try {
         let allPokemons = await getAllPokemons();
-        console.log("ID ingresada por params: ", idPoke);
     if(idPoke){
         const findingPoke = await allPokemons.filter(pkId => pkId.id === idPoke);
         console.log("Poke by ID: ", findingPoke)
