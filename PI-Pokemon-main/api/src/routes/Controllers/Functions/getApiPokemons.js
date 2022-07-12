@@ -1,6 +1,7 @@
 const axios = require('axios');
 
 async function getApiPokes() { 
+    console.log("Entré a getApiPoke")
     try {
         let apiPokemon = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=40')
         let allPokemons = apiPokemon.data.results;
@@ -26,7 +27,7 @@ async function getApiPokes() {
     } catch (error) {
         console.log(error);
     } 
-}
+} 
 
 module.exports = {
     getApiPokes
