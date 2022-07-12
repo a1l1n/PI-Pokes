@@ -9,7 +9,6 @@ import PokeForm from './Pages/PokeForm/PokeForm';
 function App() {
   return (
     <BrowserRouter>
-      <h1>Henry Pokemon</h1>
     <Routes>
     <Route exact path="/" element={<LandingPage/>} />
     <Route exact path="/home" element={<Home/>} />
