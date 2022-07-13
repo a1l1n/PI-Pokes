@@ -1,10 +1,11 @@
 import React from 'react'
+import Head from '../../Components/Head/Head'
 import NavBar from '../../Components/NavBar/NavBar'
 
 export default function Home(){
   return (
     <div>
-      Home
+      <Head />
       <NavBar />
     </div>
   )
