@@ -10,14 +10,15 @@ import {
     ORDER_A_TO_Z,
     ORDER_Z_TO_A,
     ORDER_BY_ATTACK,
-    RESET_FILTERS
+    RESET_FILTERS,
+    LOADING
 } from './Const';
 
 const initialState = {
-    allPokemons: [],
-    pokemon: [],
-    pokemonDetail: [],
-    types: [],
+    allPokemons: [], ////////////////////// getAllPokemons
+    pokemon: [], /////////////////////////  poke?name=
+    pokemonDetail: [], //////////////////   getPokeById
+    types: [], //////////////////////////   getTypes
     loading: true
 };
 
@@ -26,7 +27,8 @@ export default function rootReducer(state = initialState, action){
         case GET_ALL_POKEMONS:
             return {
               ...state,
-              allPokemons: payload,
+              allPokemons: action.payload,
+              pokemon: action.payload,
               loading: false
             };
         case GET_POKEMON_BY_NAME:
@@ -49,12 +51,22 @@ export default function rootReducer(state = initialState, action){
             return {
                 ...state
             };
-        case 
+        case FILTER_BY_TYPES:  ////////////////////////////////////
+            return {
 
+            } 
+        case FILTER_POKEMON_CREATED:
+            return {
 
+            }
+        
 
-
+/*         case LOADING:
+            return {
+                ...state,
+                loading: true
+            } */
         default:
-            break;
+            return state;
     }
 } 

@@ -10,9 +10,66 @@ import {
     ORDER_A_TO_Z,
     ORDER_Z_TO_A,
     ORDER_BY_ATTACK,
-    RESET_FILTERS
+    RESET_FILTERS,
+    //LOADING ///////////////////////////////////////
 } from './Const';
 
+export function getAllPokemons(){
+    return async function(dispatch) {
+        return fetch(`http://localhost:3001/pokemons`)
+        .then(res => res.json())
+        .then(json => {
+            console.log("Esto trae el fetch: ", json)
+            dispatch({
+                type: GET_ALL_POKEMONS,
+                payload: json.data
+                });
+        });
+    };
+};
+
+export function getPokemonByName(name){
+    console.log("Si no me trae la info cambiar payload: json.data-------")
+    return async function(dispatch) {
+        return fetch(`http://localhost:3001/pokemons?name=${name}`)
+        .then(res => res.json())
+        .then(json => {
+            dispatch({
+                type: GET_POKEMON_BY_NAME,
+                payload: json
+                });
+        });
+    };
+};
+
+export function getPokemonById(idPoke){
+    console.log("Si no me trae la info cambiar payload: json.data-------")
+    return async function(dispatch) {
+        return fetch(`http://localhost:3001/pokemons/${idPoke}`)
+        .then(res => res.json())
+        .then(json => {
+            dispatch({
+                type: GET_POKEMON_BY_ID,
+                payload: json
+                });
+        });
+    };
+};
+
+
+export function getAllTypes(){
+    console.log("Si no me trae la info cambiar payload: json.data-------")
+    return async function(dispatch) {
+        return fetch(`http://localhost:3001/types`)
+        .then(res => res.json())
+        .then(json => {
+            dispatch({
+                type: GET_ALL_TYPES,
+                payload: json
+                });
+        });
+    };
+};
 
 
 /* 

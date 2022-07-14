@@ -1,24 +1,17 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Styles from './Cards.module.css';
 
-export const Cards = () => {
+export default function Cards({ name, img, types}) {
   return (
-    <div>Cards</div>
+    <div className={Styles.cards}>
+        <img src={img} alt='' width='250px' height='125px' className={Styles.countryImage}/> 
+        <h3>{name}</h3>
+        <h4>{types}</h4>
+    </div>
   )
 }
 
 /* 
-[ ] Área donde se verá el listado de pokemons. Al iniciar deberá cargar los primeros 
-resultados obtenidos desde la ruta GET /pokemons y deberá mostrar su:
-Imagen
-Nombre
-Tipos (Electrico, Fuego, Agua, etc)
- */
-
-
-/* 
-[ ] Área donde se verá el listado de pokemons. Al iniciar deberá cargar los primeros 
-resultados obtenidos desde la ruta GET /pokemons y deberá mostrar su:
-Imagen
-Nombre
-Tipos (Electrico, Fuego, Agua, etc)
+Una tarjeta -> link a Card (id)
  */
