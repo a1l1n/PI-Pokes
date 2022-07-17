@@ -9,6 +9,7 @@ import NavBar from '../../Components/NavBar/NavBar'
 import Cards from '../../Components/Cards/Cards';
 import Loading from '../../Components/Loading/Loading';
 import Styles from './Home.module.css'
+import Pagination from '../../Components/Pagination/Pagination';
 
 
 export default function Home(){
@@ -23,19 +24,33 @@ export default function Home(){
   useEffect(() =>{
     dispatch(getAllPokemons());
     dispatch(getAllTypes());
-  }, [dispatch])
+  }, [dispatch]);
+
+
+
+  // PAGINADO ---------------------------------------------------
+  const [page, setPage] = useState(1);
+  const [forPage] = useState(12)
+  const totalPages = Math.ceil(allPokemons.length/forPage);
+
+  // FILTROS ----------------------------------------------------
+
+
 
   return (
     <div>
       <Head />
       <NavBar />
-      <div className={Styles.cards}>
+
+      <div className={Styles.cardsGrid}>
         {
           loader ? (<Loading/>) :
-          allPokemons?.map(poke =>{
+          allPokemons
+          .slice((page - 1) * forPage, (page - 1) * forPage + forPage)
+          .map(poke =>{
             return (
-              <div key={poke.id}>
-                <Link to={'/home/' + poke.id}>
+              <div key={poke.id} className={Styles.cards}>
+                <Link to={`/home/${poke.id}`}>
                   <Cards 
                   name={poke.name}
                   img={poke.img} 
@@ -47,15 +62,20 @@ export default function Home(){
           })
         }
       </div>
+      <Pagination
+        page ={page}
+        setPage={setPage}
+        totalPages={totalPages}
+      />
     </div>
   )
 }
 
 /* 
 OBJETIVOS PARA MIÉRCOLES 13/07
-1) Actions
-2) Reducer
-3) Cards
+1) Pagination VAMOS LA CONCHA DE LA LORAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+2) Card
+3) Empezar el form
 
 Componentes que confluyen acá:
 NavBar

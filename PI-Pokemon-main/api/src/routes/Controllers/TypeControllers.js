@@ -4,6 +4,7 @@ const { Type } = require('../../db');
 async function getTypes(req, res){
   try {
     let tp = await Type.findAll(); // -> chequeo si tengo algo en la base de datos
+    if (tp.length > 0) return res.status(200).send(tp)
     const apiTypes = await axios.get(`https://pokeapi.co/api/v2/type`);
     const getTypes = apiTypes.data.results.map((p) => {
       return {
@@ -15,8 +16,6 @@ async function getTypes(req, res){
         where:{ name: t.name }
         })
     });
-    // Averiguar cómo enviar bien la informatzióm
-  
   } catch (error) {
     console.log(error);
   }

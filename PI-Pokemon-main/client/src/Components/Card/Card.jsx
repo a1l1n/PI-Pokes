@@ -1,8 +1,20 @@
-import React from 'react'
+import React from 'react';
+import Styles from './Card.module.css'
 
-export const Card = () => {
+export default function Card({ name, hp, attack, defense, speed, height, weight, types, img }) {
+  
   return (
-    <div>Card</div>
+    <div className={Style.cardContainer}>
+        <img src={img} alt='' width='250px' height='125px' className={Styles.countryImage}/> 
+        <h3>{name}</h3>
+        <h4>{hp}</h4>
+        <h4>{attack}</h4>
+        <h4>{defense}</h4>
+        <h4>{speed}</h4>
+        <h4>{height}</h4>
+        <h4>{weight}</h4>
+        <h4>{types}</h4>
+    </div>
   )
 }
 

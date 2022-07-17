@@ -65,12 +65,12 @@ async function postPoke(req, res){
                 name: types
             }
         })
-        console.log("Tipos seleccioandos en la db: ", typeList);
+        console.log("Tipos seleccionados en la db: ", typeList);
         const response = await newPoke.addType(typeList);
         console.log("Response: ", response);
         return res.status(200).send("Your Pokemon has been successfully created!")
     } catch (error) {
-        res.send(error);
+        return res.send(error);
     }
 };
 

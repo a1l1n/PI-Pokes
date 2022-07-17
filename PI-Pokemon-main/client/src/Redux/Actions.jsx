@@ -19,10 +19,9 @@ export function getAllPokemons(){
         return fetch(`http://localhost:3001/pokemons`)
         .then(res => res.json())
         .then(json => {
-            console.log("Esto trae el fetch: ", json)
             dispatch({
                 type: GET_ALL_POKEMONS,
-                payload: json.data
+                payload: json
                 });
         });
     };
@@ -58,15 +57,15 @@ export function getPokemonById(idPoke){
 
 
 export function getAllTypes(){
-    console.log("Si no me trae la info cambiar payload: json.data-------")
     return async function(dispatch) {
         return fetch(`http://localhost:3001/types`)
         .then(res => res.json())
         .then(json => {
+            console.log("Esto me trae el fetch: ", json)
             dispatch({
                 type: GET_ALL_TYPES,
                 payload: json
-                });
+            });
         });
     };
 };

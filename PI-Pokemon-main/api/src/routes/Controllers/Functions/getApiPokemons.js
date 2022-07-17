@@ -18,7 +18,7 @@ async function getApiPokes() {
                     speed: pokemon.data.stats[5].base_stat,
                     height: pokemon.data.height * 10, // a cms
                     weight: pokemon.data.weight / 10, // a kgs
-                    img: pokemon.data.sprites.other.home.front_default,
+                    img: pokemon.data.sprites.other["official-artwork"].front_default,
                     types: pokemon.data.types.map(pokeTypes => [pokeTypes.type.name])
                 }
             })
