@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { 
   getAllPokemons,
-  getAllTypes } from '../../Redux/Actions'
+  getAllTypes,
+  filterByTypes,
+  orderAtoZ,
+  orderByAttack } from '../../Redux/Actions'
 import Head from '../../Components/Head/Head'
 import NavBar from '../../Components/NavBar/NavBar'
 import Cards from '../../Components/Cards/Cards';
@@ -13,35 +16,57 @@ import Pagination from '../../Components/Pagination/Pagination';
 
 
 export default function Home(){
-  /* This hook returns a reference to the dispatch function from the Redux store. 
-  You may use it to dispatch actions as needed */
+  /* This hook returns a reference to the dispatch function from the Redux store. You may use it to dispatch actions as needed */
   const dispatch = useDispatch();
   /* It returns just what I need from the state */
-  const allPokemons = useSelector(state => state.allPokemons);
-  const allTypes = useSelector(state => state.types);
+  const allPokemons = useSelector(state => state.pokemons);
+  const allTypes = useSelector(state => state.types); 
   const loader = useSelector(state => state.loading)
+  const [order, setOrder] = useState('')
 
   useEffect(() =>{
     dispatch(getAllPokemons());
     dispatch(getAllTypes());
   }, [dispatch]);
 
-
-
-  // PAGINADO ---------------------------------------------------
+  // PAGINADO ---------------------------------------------------------------------------
   const [page, setPage] = useState(1);
   const [forPage] = useState(12)
   const totalPages = Math.ceil(allPokemons.length/forPage);
 
-  // FILTROS ----------------------------------------------------
+  // FILTROS ----------------------------------------------------------------------------
+  function handleFilterByType(e){
+    e.preventDefault();
+    dispatch(filterByTypes(e.target.value));
+    setPage(1);
+  };
 
+  function handleAlphabeticalOrder(e){
+    e.preventDefault();
+    dispatch(orderAtoZ(e.target.value));
+    setPage(1);
+    setOrder(e.target.value);
+  };
+
+  function handleAttackOrder(e){
+    e.preventDefault();
+    dispatch(orderByAttack(e.target.value));
+    setPage(1);
+    setOrder(e.target.value)
+  };
 
 
   return (
     <div>
       <Head />
-      <NavBar />
-
+{/* ------------------------------------------------------------------------------------- */}
+      <NavBar 
+        allTypes={allTypes}
+        handleFilterByType={handleFilterByType}
+        handleAlphabeticalOrder={handleAlphabeticalOrder}
+        handleAttackOrder={handleAttackOrder}
+      />
+{/* ------------------------------------------------------------------------------------- */}
       <div className={Styles.cardsGrid}>
         {
           loader ? (<Loading/>) :
@@ -62,6 +87,7 @@ export default function Home(){
           })
         }
       </div>
+{/* ------------------------------------------------------------------------------------- */}
       <Pagination
         page ={page}
         setPage={setPage}
@@ -71,23 +97,15 @@ export default function Home(){
   )
 }
 
-/* 
-OBJETIVOS PARA MIÉRCOLES 13/07
-1) Pagination VAMOS LA CONCHA DE LA LORAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-2) Card
-3) Empezar el form
 
+/* 
+Objetivos 18/7
+Terminar con ALGUNO DE LOS FILTROS, LPM
+--------------------------------------------------------------
 Componentes que confluyen acá:
 NavBar
 Cards
-Filtros
-
 ------------------
 Estados -> useEffect, useDispatch, useHistory
 
-[ ] Área donde se verá el listado de pokemons. Al iniciar deberá cargar los primeros 
-resultados obtenidos desde la ruta GET /pokemons y deberá mostrar su:
-Imagen
-Nombre
-Tipos (Electrico, Fuego, Agua, etc)
  */

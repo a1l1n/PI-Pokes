@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import Styles from './Card.module.css'
 
 export default function Card({ name, hp, attack, defense, speed, height, weight, types, img }) {
@@ -17,7 +17,7 @@ export default function Card({ name, hp, attack, defense, speed, height, weight,
     </div>
   )
 }
-
+ */
 
 /* 
 Acá se ven todos los detalles todos de los Pokes seleccionados por ID

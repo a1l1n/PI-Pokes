@@ -43,10 +43,12 @@ async function getPokeId(req, res){
 // POST -------------------------------------------------------------------------
 
 async function postPoke(req, res){
-    const { name, hp, attack, defense, speed, height, weight, types, img } = req.body;
-    if (!name || !hp || !attack || !defense || !speed || !height || !weight || !types) return res.status(400).send('Please, all fields must be completed')
+    const { name, hp, attack, defense, speed, height, weight, types, img, createDB } = req.body;
+    if (!name || !hp || !attack || !defense || !speed || !height || !weight || !types || !createDB) return res.status(400).send('Please, all fields must be completed')
     // Método para tener una imagen default con un if
     try {
+// Si uso find or create solo con el dondicional del nombre, se me pueden sobreescribir datos?
+
         const newPoke = await Pokemon.findOrCreate({
             where: {name: name},
             defaults: {
@@ -66,8 +68,8 @@ async function postPoke(req, res){
             }
         })
         console.log("Tipos seleccionados en la db: ", typeList);
-        const response = await newPoke.addType(typeList);
-        console.log("Response: ", response);
+        /* const response =  */await newPoke.addType(typeList);
+        //console.log("Response: ", response);
         return res.status(200).send("Your Pokemon has been successfully created!")
     } catch (error) {
         return res.send(error);

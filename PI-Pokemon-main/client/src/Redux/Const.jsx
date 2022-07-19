@@ -7,7 +7,6 @@ export const DELETE_POKEMON = "DELETE_POKEMON"; ////////////////////////////////
 export const FILTER_BY_TYPES = "FILTER_BY_TYPES";
 export const FILTER_POKEMON_CREATED = "FILTER_POKEMON_CREATED";
 export const ORDER_A_TO_Z = "ORDER_A_TO_Z";
-export const ORDER_Z_TO_A = "ORDER_Z_TO_A";
 export const ORDER_BY_ATTACK = "ORDER_BY_ATTACK"; 
 export const RESET_FILTERS = "RESET_FILTERS";
 export const LOADING = "LOADING";

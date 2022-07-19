@@ -1,14 +1,13 @@
 import {
-    GET_ALL_POKEMONS,
-    GET_POKEMON_BY_NAME,
-    GET_POKEMON_BY_ID,
-    GET_ALL_TYPES,
-    POST_A_NEW_POKEMON,
+    GET_ALL_POKEMONS,           // L.17
+    GET_POKEMON_BY_NAME,        // L.30
+    GET_POKEMON_BY_ID,          // L.44
+    GET_ALL_TYPES,              // L.57
+    POST_A_NEW_POKEMON,         // L.71
     DELETE_POKEMON, //////////////////////////////////
     FILTER_BY_TYPES,
     FILTER_POKEMON_CREATED,
     ORDER_A_TO_Z,
-    ORDER_Z_TO_A,
     ORDER_BY_ATTACK,
     RESET_FILTERS,
     //LOADING ///////////////////////////////////////
@@ -42,11 +41,12 @@ export function getPokemonByName(name){
 };
 
 export function getPokemonById(idPoke){
-    console.log("Si no me trae la info cambiar payload: json.data-------")
     return async function(dispatch) {
+        console.log("Debería entrar acá por ID")
         return fetch(`http://localhost:3001/pokemons/${idPoke}`)
-        .then(res => res.json())
+        .then(res => res.json(), console.log("Esta sería la respuesta: "), )
         .then(json => {
+            console.log("Este es el JSON del action",json)
             dispatch({
                 type: GET_POKEMON_BY_ID,
                 payload: json
@@ -54,7 +54,6 @@ export function getPokemonById(idPoke){
         });
     };
 };
-
 
 export function getAllTypes(){
     return async function(dispatch) {
@@ -69,6 +68,33 @@ export function getAllTypes(){
         });
     };
 };
+
+export function postNewPokemon(){
+    //POST_A_NEW_POKEMON -----------------------------------
+} 
+
+export function filterByTypes(payload){
+    return {
+        type: FILTER_BY_TYPES,
+        payload: payload
+    }
+};
+
+
+export function orderAtoZ(payload){
+    return {
+        type: ORDER_A_TO_Z,
+        payload: payload
+    }
+};
+
+export function orderByAttack(payload){
+    return {
+        type: ORDER_BY_ATTACK,
+        payload: payload
+    }
+}
+
 
 
 /* 
