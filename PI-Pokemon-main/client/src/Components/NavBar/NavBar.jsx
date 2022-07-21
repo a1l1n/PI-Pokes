@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
 import Styles from './NavBar.module.css';
 
 
 export default function NavBar({ allTypes, handleFilterByType, handleAlphabeticalOrder, handleAttackOrder }) {
+
   return (
     <nav className={Styles.navBar}>
       <h3>This is the NavBar</h3>

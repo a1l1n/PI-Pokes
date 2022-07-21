@@ -99,8 +99,13 @@ export default function Home(){
 
 
 /* 
-Objetivos 18/7
-Terminar con ALGUNO DE LOS FILTROS, LPM
+
+FALTA TERMINAR CON EL FILTRO DE ORIGEN
+FALTA TERMINAR EL FORMULARIO
+FALTA TERMINAR EL REQ.QUERY
+FALTA TERMINAR EL REQ.PARAMS
+FALTA EL SEARCHBAR
+
 --------------------------------------------------------------
 Componentes que confluyen acá:
 NavBar

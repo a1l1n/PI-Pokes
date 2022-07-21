@@ -7,13 +7,15 @@ import { getPokemonById } from '../../Redux/Actions';
 export default function PokeDetail(){
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { idPoke } = useParams()
+  const { idPoke } = useParams();
+  console.log("IDPoke: ", idPoke)
   const pokeDetail = useSelector(state => state.pokemonDetail);
-  console.log("Esto es pokeDetail: ",pokeDetail);
+  console.log("Esto es pokeDetail (pag PokeDetail): ", pokeDetail);
 
   useEffect(()=>{
     dispatch(getPokemonById(idPoke))
   }, [dispatch, idPoke]);
+
 
   return (
     <div>PokeDetail</div>
